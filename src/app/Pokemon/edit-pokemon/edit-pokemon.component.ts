@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../pokemon';
 import { PokemonService } from '../pokemon.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule, NgIf } from '@angular/common';
+import { PokemonFormComponent } from '../pokemon-form/pokemon-form.component';
 
 @Component({
   selector: 'app-edit-pokemon',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, NgIf, PokemonFormComponent],
   template: `
     <h2 class="center">Editer {{ pokemon?.name }}</h2>
     <p *ngIf="pokemon" class="center">
