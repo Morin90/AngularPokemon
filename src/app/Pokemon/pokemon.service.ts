@@ -16,6 +16,18 @@ export class PokemonService {
   }
 
   getPokemonTypeList(){
-    return [...new Set(POKEMONS.map(pokemon => pokemon.types[0]))];
+    return [
+      'Plante', 
+      'Feu', 
+      'Eau', 
+      'Insecte',
+      'Normal',
+      'Electrik', 
+      'Poison', 
+      'Fée',
+      'Vol',
+      'Combat',
+      'Psy'
+    ];
   }
 }
