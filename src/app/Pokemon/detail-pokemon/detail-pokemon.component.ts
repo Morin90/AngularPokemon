@@ -18,7 +18,7 @@ import { PokemonService } from '../pokemon.service';
 })
 export class DetailPokemonComponent implements OnInit {
 
-  pokemonList: Pokemon[] = [];
+  pokemonList: Pokemon[];
   pokemon: Pokemon | undefined;
 
   constructor(
@@ -32,7 +32,8 @@ export class DetailPokemonComponent implements OnInit {
     const pokemonId: string | null = this.route.snapshot.paramMap.get('id');
 
     if (pokemonId) {
-      this.pokemon = this.pokemonService.getPokemonById(Number(pokemonId));
+      this.pokemonService.getPokemonById(Number(pokemonId))
+      .subscribe(pokemon => this.pokemon = pokemon);
     }
   }
 

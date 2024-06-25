@@ -8,6 +8,8 @@ import { DetailPokemonComponent } from './detail-pokemon/detail-pokemon.componen
 import { EditPokemonComponent } from './edit-pokemon/edit-pokemon.component';
 import { PokemonService } from './pokemon.service';
 
+
+
 const pokemonRoutes: Routes = [
     { path: '', component: ListPokemonComponent },
     { path: ':id', component: DetailPokemonComponent },
@@ -21,6 +23,6 @@ const pokemonRoutes: Routes = [
         FormsModule,
         RouterModule.forChild(pokemonRoutes),
     ],
-    providers: [PokemonService]
+    providers: [PokemonService],
 })
 export class PokemonModule { }

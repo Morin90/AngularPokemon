@@ -21,6 +21,7 @@ import { PokemonFormComponent } from '../pokemon-form/pokemon-form.component';
 })
 export class EditPokemonComponent implements OnInit {
 pokemon: Pokemon | undefined;
+  pokemonList: Pokemon | undefined;
 constructor(private pokemonService: PokemonService,
   private route: ActivatedRoute
 ) {
@@ -32,7 +33,8 @@ ngOnInit() {
   const pokemonId: string | null = this.route.snapshot.paramMap.get('id');
 
   if (pokemonId) {
-    this.pokemon = this.pokemonService.getPokemonById(+pokemonId);
+    this.pokemonService.getPokemonById(+pokemonId)
+    .subscribe(pokemon => this.pokemon = pokemon);
   }else {
     this.pokemon = undefined;
   } 
