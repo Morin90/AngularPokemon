@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { PokemonTypeColorPipe } from '../pokemon-type-color.pipe';
 import { BorderCardDirective } from '../border-card.directive';
 import { PokemonService } from '../pokemon.service';
+import { PokemonFormComponent } from '../pokemon-form/pokemon-form.component';
 
 @Component({
   selector: 'app-detail-pokemon',
@@ -13,29 +14,29 @@ import { PokemonService } from '../pokemon.service';
     CommonModule,
     PokemonTypeColorPipe,
     BorderCardDirective,
+    PokemonFormComponent
   ],
   templateUrl: './detail-pokemon.component.html'
 })
 export class DetailPokemonComponent implements OnInit {
 
   pokemonList: Pokemon[];
-  pokemon: Pokemon | undefined;
+  pokemon: Pokemon|undefined;
 
   constructor(
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, 
     private router: Router,
     private pokemonService: PokemonService
   ) { }
 
   ngOnInit() {
-
-    const pokemonId: string | null = this.route.snapshot.paramMap.get('id');
-
-    if (pokemonId) {
+    const pokemonId: string|null = this.route.snapshot.paramMap.get('id');
+    if(pokemonId) {
       this.pokemonService.getPokemonById(Number(pokemonId))
-      .subscribe(pokemon => this.pokemon = pokemon);
+        .subscribe(pokemon => this.pokemon = pokemon);
     }
   }
+
 
   goToPokemonList() {
     this.router.navigate(['/pokemons']);
@@ -46,10 +47,7 @@ export class DetailPokemonComponent implements OnInit {
   }
 
   deletePokemon(pokemon: Pokemon) {
-    const index = this.pokemonList.indexOf(pokemon);
-    if (index > -1) {
-      this.pokemonList.splice(index, 1);
-    }
-    this.goToPokemonList();
+    this.pokemonService.deletePokemonById(pokemon.id)
+      .subscribe(() => this.goToPokemonList());
   }
 }

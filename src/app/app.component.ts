@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 
@@ -12,7 +12,10 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   pokemons: any[] = [];
-  constructor() { }
+  constructor(private router: Router) {}
 
+  navigateToAddPokemon() {
+    this.router.navigate(['/pokemons/add']);
+  }
 
 }

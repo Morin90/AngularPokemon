@@ -8,12 +8,18 @@ import { DetailPokemonComponent } from './detail-pokemon/detail-pokemon.componen
 import { EditPokemonComponent } from './edit-pokemon/edit-pokemon.component';
 import { PokemonService } from './pokemon.service';
 
+import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
+import { AddPokemonComponent } from './add-pokemon/add-pokemon.component';
+
+
 
 
 const pokemonRoutes: Routes = [
+    { path: 'edit/:id', component: EditPokemonComponent },
+    { path: 'add', component: AddPokemonComponent },
     { path: '', component: ListPokemonComponent },
-    { path: ':id', component: DetailPokemonComponent },
-    { path: 'edit/:id', component: EditPokemonComponent }
+    { path: ':id', component: DetailPokemonComponent }
+
 ];
 
 @NgModule({
@@ -21,6 +27,7 @@ const pokemonRoutes: Routes = [
     imports: [
         CommonModule,
         FormsModule,
+        PokemonFormComponent,
         RouterModule.forChild(pokemonRoutes),
     ],
     providers: [PokemonService],
