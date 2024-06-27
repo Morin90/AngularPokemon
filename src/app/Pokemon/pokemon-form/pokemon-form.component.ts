@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { PokemonTypeColorPipe } from '../pokemon-type-color.pipe';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-pokemon-form',
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     PokemonFormComponent,
     FormsModule,
-    PokemonTypeColorPipe
+    PokemonTypeColorPipe,
+    LoaderComponent
   ],
   templateUrl: './pokemon-form.component.html',
   styleUrls: ['./pokemon-form.component.css']
@@ -58,7 +60,7 @@ export class PokemonFormComponent implements OnInit {
     return true;
   }
 
-  onSubmit() {
+  /*onSubmit() {
     if (this.isAddForm) {
       this.pokemonService.addPokemon(this.pokemon)
         .subscribe((pokemon: Pokemon) => this.router.navigate(['/pokemons', pokemon.id]));
@@ -66,6 +68,20 @@ export class PokemonFormComponent implements OnInit {
       this.pokemonService.updatePokemon(this.pokemon)
         .subscribe(() => this.router.navigate(['/pokemons', this.pokemon.id]));
     }
+  }*/
+    onSubmit() {
+      if (this.isAddForm) {
+        this.pokemonService.updatePokemon(this.pokemon).subscribe(() => {
+          this.goBack();
+        });
+      } else {
+        this.pokemonService.addPokemon(this.pokemon).subscribe(() => {
+          this.goBack();
+        });
+      }
+    }
+  goBack() {
+    this.router.navigate(['/pokemons']);
   }
 }
 

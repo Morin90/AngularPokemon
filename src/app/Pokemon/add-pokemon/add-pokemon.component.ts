@@ -33,4 +33,5 @@ export class AddPokemonComponent implements OnInit {
       created: new Date()
     };
   }
+  
 }

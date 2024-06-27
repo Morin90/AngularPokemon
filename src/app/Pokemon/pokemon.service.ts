@@ -5,8 +5,8 @@ import { Pokemon } from './pokemon';
 
 @Injectable()
 export class PokemonService {
-
-  constructor(private http: HttpClient) {}
+private readonly localStorageKey = `pokemons`;
+  constructor(private http: HttpClient) { }
 
   getPokemonList(): Observable<Pokemon[]> {
     return this.http.get<Pokemon[]>('api/pokemons').pipe(
@@ -15,7 +15,7 @@ export class PokemonService {
     );
   }
 
-  getPokemonById(pokemonId: number): Observable<Pokemon|undefined> {
+  getPokemonById(pokemonId: number): Observable<Pokemon | undefined> {
     return this.http.get<Pokemon>(`api/pokemons/${pokemonId}`).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, undefined))
@@ -23,9 +23,9 @@ export class PokemonService {
   }
 
   searchPokemonList(term: string): Observable<Pokemon[]> {
-    if(term.length <= 1) {
+    if (term.length <= 1) {
       return of([]);
-    } 
+    }
 
     return this.http.get<Pokemon[]>(`api/pokemons/?name=${term}`).pipe(
       tap((response) => this.log(response)),
@@ -73,13 +73,13 @@ export class PokemonService {
 
   getPokemonTypeList(): string[] {
     return [
-      'Plante', 
-      'Feu', 
-      'Eau', 
+      'Plante',
+      'Feu',
+      'Eau',
       'Insecte',
       'Normal',
-      'Electrik', 
-      'Poison', 
+      'Electrik',
+      'Poison',
       'Fée',
       'Vol',
       'Combat',

@@ -6,6 +6,7 @@ import { PokemonTypeColorPipe } from '../pokemon-type-color.pipe';
 import { BorderCardDirective } from '../border-card.directive';
 import { PokemonService } from '../pokemon.service';
 import { PokemonFormComponent } from '../pokemon-form/pokemon-form.component';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-detail-pokemon',
@@ -14,7 +15,8 @@ import { PokemonFormComponent } from '../pokemon-form/pokemon-form.component';
     CommonModule,
     PokemonTypeColorPipe,
     BorderCardDirective,
-    PokemonFormComponent
+    PokemonFormComponent,
+  LoaderComponent
   ],
   templateUrl: './detail-pokemon.component.html'
 })

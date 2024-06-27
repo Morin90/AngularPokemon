@@ -10,6 +10,7 @@ import { PokemonService } from './pokemon.service';
 
 import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
 import { AddPokemonComponent } from './add-pokemon/add-pokemon.component';
+import { LocalStorageService } from './local-storage.service';
 
 
 

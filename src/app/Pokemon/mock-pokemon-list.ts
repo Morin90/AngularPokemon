@@ -1,4 +1,5 @@
 import { Pokemon } from './pokemon';
+import { PokemonService } from './pokemon.service';
 export const POKEMONS: Pokemon[] = [
     {
         id: 1,
@@ -109,3 +110,4 @@ export const POKEMONS: Pokemon[] = [
         created: new Date()
     }
 ];
+

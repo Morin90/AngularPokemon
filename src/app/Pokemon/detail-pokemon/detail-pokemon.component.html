@@ -10,6 +10,7 @@
                     <table class="bordered striped">
                         <tbody>
                             <tr>
+                                <br>
                                 <td>Nom</td>
                                 <td><strong>{{ pokemon.name }}</strong></td>
                             </tr>
@@ -45,5 +46,5 @@
     </div>
 </div>
 <h4 *ngIf='!pokemon' class="center">
-   
+    <app-loader></app-loader>
 </h4>
