@@ -5,7 +5,7 @@ import { Pokemon } from './pokemon';
 
 @Injectable()
 export class PokemonService {
-private readonly localStorageKey = `pokemons`;
+
   constructor(private http: HttpClient) { }
 
   getPokemonList(): Observable<Pokemon[]> {
