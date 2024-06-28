@@ -5,18 +5,18 @@ import { Pokemon } from './pokemon';
 
 @Injectable()
 export class PokemonService {
-
+  private apiUrl = 'http://localhost:8080/api/pokemons';
   constructor(private http: HttpClient) { }
 
   getPokemonList(): Observable<Pokemon[]> {
-    return this.http.get<Pokemon[]>('api/pokemons').pipe(
+    return this.http.get<Pokemon[]>(this.apiUrl).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, []))
     );
   }
 
   getPokemonById(pokemonId: number): Observable<Pokemon | undefined> {
-    return this.http.get<Pokemon>(`api/pokemons/${pokemonId}`).pipe(
+    return this.http.get<Pokemon>(`${this.apiUrl}/${pokemonId}`).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, undefined))
     );
@@ -27,7 +27,7 @@ export class PokemonService {
       return of([]);
     }
 
-    return this.http.get<Pokemon[]>(`api/pokemons/?name=${term}`).pipe(
+    return this.http.get<Pokemon[]>(`${this.apiUrl}/?name=${term}`).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, []))
     );
@@ -38,7 +38,7 @@ export class PokemonService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.put('api/pokemons', pokemon, httpOptions).pipe(
+    return this.http.put(`${this.apiUrl}`, pokemon, httpOptions).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, null))
     );
@@ -49,14 +49,14 @@ export class PokemonService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.post<Pokemon>('api/pokemons', pokemon, httpOptions).pipe(
+    return this.http.post<Pokemon>(`${this.apiUrl}`, pokemon, httpOptions).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, null))
     );
   }
 
   deletePokemonById(pokemonId: number): Observable<null> {
-    return this.http.delete(`api/pokemons/${pokemonId}`).pipe(
+    return this.http.delete(`${this.apiUrl}/${pokemonId}`).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, null))
     );
