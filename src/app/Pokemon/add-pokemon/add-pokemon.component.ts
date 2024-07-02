@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PokemonFormComponent } from '../pokemon-form/pokemon-form.component';
 import { Pokemon } from '../pokemon';
+import { PokemonService } from '../pokemon.service';
 
 @Component({
   selector: 'app-add-pokemon',
@@ -22,9 +23,10 @@ import { Pokemon } from '../pokemon';
 export class AddPokemonComponent implements OnInit {
   pokemon: Pokemon;
 
+  constructor(private pokemonService: PokemonService) {}
   ngOnInit() {
     this.pokemon = {
-      id: 0,
+      id: 13,
       name: 'New Pokemon',
       hp: 100,
       cp: 10,
@@ -33,5 +35,8 @@ export class AddPokemonComponent implements OnInit {
       created: new Date()
     };
   }
-  
+  addPokemon(pokemon: Pokemon) {
+    pokemon.id = new Date().getTime(); // Générer un ID unique
+    this.pokemonService.addPokemon(pokemon);
+  }
 }

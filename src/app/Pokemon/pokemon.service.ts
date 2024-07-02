@@ -27,7 +27,7 @@ export class PokemonService {
       return of([]);
     }
 
-    return this.http.get<Pokemon[]>(`${this.apiUrl}/?name=${term}`).pipe(
+    return this.http.get<Pokemon[]>(`${this.apiUrl}/search?term=${term}`).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, []))
     );
@@ -38,7 +38,7 @@ export class PokemonService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.put(`${this.apiUrl}`, pokemon, httpOptions).pipe(
+    return this.http.put(`${this.apiUrl}/${pokemon.id}`,pokemon, httpOptions).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, null))
     );
